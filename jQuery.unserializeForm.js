@@ -1,6 +1,6 @@
 // Unserialize (to) form plugin
-// Version 1.0.3
-// Copyright (C) 2010-2011 Christopher Thielen
+// Version 1.0.4
+// Copyright (C) 2010-2011 Christopher Thielen, others (see ChangeLog below)
 // Dual-licensed under GPLv2 and the MIT open source licenses
 
 // Notes: Will recurse fieldsets and p tags as they are commonly used in forms.
@@ -99,3 +99,6 @@ function _unserializeFormSetValue(el, _value) {
 //                                    * Traverse saved elements instead of the form when unserializing
 //                                    * Provide optional callback for building dynamic forms
 //                                    * Fixed issue setting radio buttons
+// 2011-11-11: Version 1.0.4 release:
+//                                    * Use .attr() instead of .prop() for jQuery 1.6 compatibility (Edward Anderson)
+//                                    * Restore unchecked checkboxes and radios (Edward Anderson)
