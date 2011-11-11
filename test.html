@@ -75,7 +75,7 @@
     }
     
     function test_clear() {
-      $('form :input').val("");
+      $('form :input[type!=radio]').val("");
       $('form :input').attr("checked", false);
       
       // The above one-liner clears the text from our buttons ...
