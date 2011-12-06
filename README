@@ -9,17 +9,29 @@ The serialized form data could be saved in a session, perhaps in HTML5 sessionSt
 Note that saving the serialized data to a cookie is troublesome as not all browsers
 implement the same cookie string lengths, so sessionStorage or a SQL db is recommended.
 
-Optionally, a second parameter may be passed to unserializeForm to provide a callback:
+Alternate Usage:
 
 	var cb = function(element, value) { return true; // or false }
 
-The callback will be given the name of the element to create and the value to set it to.
-If the callback returns true, unserializeForm moves onto the next element, assuming the
-callback handled the unserializing process, but if the callback returns false, it will
-attempt to find and set the value of the element.
-
-The purpose of this callback is to allow for the creation of dynamic forms. Again, it is
-optional and may be ignored.
+  var s = $("form").serialize();
+  $("form").unserializeForm(s, {
+    'callback'        : cb,
+    'override-values' : false
+  });
+  
+  callback (optional):
+    The above callback is given the element and value, allowing you to build
+    dynamic forms via callback. If you return false, unserializeForm will
+    try to find and set the DOM element, otherwise, (on true) it assumes you've
+    handled that attribute and moves onto the next.
+  override-values (optional, default is false):
+    Controls whether elements already set (e.g. an input tag with a non-zero length value)
+    will be touched by the unserializer. Does not apply to radio fields or checkboxes.
+    If you have a use case for radio fields or checkboxes, please file an issue at
+    https://github.com/cthielen/unserialize-to-form/issues/ . Also note this option
+    does not apply to a callback, i.e. a callback would still have the opportunity
+    to override a value even if this option is set to false. It is up to you as
+    the callback author to enforce the behavior you wish.
 
 Known issues:
 
