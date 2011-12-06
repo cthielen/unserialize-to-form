@@ -2,8 +2,8 @@ Simple jQuery plugin to unserialize data back into forms.
 
 Usage:
 
-	var s = $("form").serialize(); // save form settings.
-	$("form").unserializeForm(s);  // restore form settings
+  var s = $("form").serialize(); // save form settings.
+  $("form").unserializeForm(s);  // restore form settings
 
 The serialized form data could be saved in a session, perhaps in HTML5 sessionStorage.
 Note that saving the serialized data to a cookie is troublesome as not all browsers
@@ -11,7 +11,7 @@ implement the same cookie string lengths, so sessionStorage or a SQL db is recom
 
 Alternate Usage:
 
-	var cb = function(element, value) { return true; // or false }
+  var cb = function(element, value) { return true; // or false }
 
   var s = $("form").serialize();
   $("form").unserializeForm(s, {
