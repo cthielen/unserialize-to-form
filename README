@@ -1,6 +1,6 @@
 jQuery Unserialize (to) Form
 ----------------------------
-Version 1.0.6
+Version 1.0.5
 
 Simple jQuery plugin to unserialize data back into forms.
 
@@ -24,7 +24,7 @@ Alternate Usage:
   });
   
   callback (optional):
-    The above callback is given the element and value, allowing you to build
+    The above callback is given the element name and value, allowing you to build
     dynamic forms via callback. If you return false, unserializeForm will
     try to find and set the DOM element, otherwise, (on true) it assumes you've
     handled that attribute and moves onto the next.

@@ -1,5 +1,5 @@
 // Unserialize (to) form plugin
-// Version 1.0.6
+// Version 1.0.5
 // Copyright (C) 2010-2011 Christopher Thielen, others (see ChangeLog below)
 // Dual-licensed under GPLv2 and the MIT open source licenses
 
@@ -108,14 +108,13 @@
   				// No callback specified - assume DOM elements exist
   				methods._unserializeFormSetValue(el, _value, _override_values);
   			} else {
-          var el = $(this).add("input,select,textarea").find("[name=\"" + unescape(key) + "\"]");
-          
   				// Callback specified - don't assume DOM elements already exist
-  				var result = _callback.call(this, el, _value);
+  				var result = _callback.call(this, unescape(key), _value);
 				
   				// If they return true, it means they handled it. If not, we will handle it.
   				// Returning false then allows for DOM building without setting values.
   				if(result == false) {
+            var el = $(this).add("input,select,textarea").find("[name=\"" + unescape(key) + "\"]");
   					// Try and find the element again as it may have just been created by the callback
   					methods._unserializeFormSetValue(el, _value, _override_values);
   				}
@@ -144,5 +143,4 @@
 //                                    * Changed second parameter to an options array to account for new option
 //                                    * Added new option 'override-values', default to true, to control whether fields
 //                                      with content should be touched by the unserializer
-// 2011-12-20: Version 1.0.6 release:
-//                                    * Callback is passed actual object, not just the name of the unserialized key
+
