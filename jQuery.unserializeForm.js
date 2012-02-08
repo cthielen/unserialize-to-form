@@ -14,7 +14,7 @@
 // Alternate Usage:
 //        var s = $("form").serialize();
 //        $("form").unserializeForm(s, {
-//          'callback'        : function(el, val) { $(el).val(val); },
+//          'callback'        : function(key, value) { $(input[name=key]).val(val); },
 //          'override-values' : false
 //        });
 //
@@ -118,7 +118,7 @@
   					// Try and find the element again as it may have just been created by the callback
   					methods._unserializeFormSetValue(el, _value, _override_values);
   				}
-  	    	}
+        }
   		}
 		})
 	}
@@ -143,4 +143,4 @@
 //                                    * Changed second parameter to an options array to account for new option
 //                                    * Added new option 'override-values', default to true, to control whether fields
 //                                      with content should be touched by the unserializer
-
+// 2012-02-08: Corrected documentation error. Thanks Scott Kirkland.
