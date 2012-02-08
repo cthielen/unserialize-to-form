@@ -109,12 +109,11 @@
   				methods._unserializeFormSetValue(el, _value, _override_values);
   			} else {
   				// Callback specified - don't assume DOM elements already exist
-  				var result = _callback.call(this, unescape(key), _value);
+  				var result = _callback.call(this, el, _value);
 				
   				// If they return true, it means they handled it. If not, we will handle it.
   				// Returning false then allows for DOM building without setting values.
   				if(result == false) {
-            var el = $(this).add("input,select,textarea").find("[name=\"" + unescape(key) + "\"]");
   					// Try and find the element again as it may have just been created by the callback
   					methods._unserializeFormSetValue(el, _value, _override_values);
   				}
