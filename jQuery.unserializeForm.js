@@ -1,6 +1,6 @@
 // Unserialize (to) form plugin
-// Version 1.0.5
-// Copyright (C) 2010-2011 Christopher Thielen, others (see ChangeLog below)
+// Version 1.0.6
+// Copyright (C) 2010-2012 Christopher Thielen, others (see ChangeLog below)
 // Dual-licensed under GPLv2 and the MIT open source licenses
 
 // Usage:
@@ -14,7 +14,7 @@
 // Alternate Usage:
 //        var s = $("form").serialize();
 //        $("form").unserializeForm(s, {
-//          'callback'        : function(key, value) { $(input[name=key]).val(val); },
+//          'callback'        : function(key, value, [element]) { $(input[name=key]).val(val); },
 //          'override-values' : false
 //        });
 //
@@ -23,6 +23,9 @@
 //          dynamic forms via callback. If you return false, unserializeForm will
 //          try to find and set the DOM element, otherwise, (on true) it assumes you've
 //          handled that attribute and moves onto the next.
+//          The callback will be passed the key and value and, if found, the DOM object it
+//          will use should you return false. If the DOM object is not found, the third parameter
+//          will be the empty array jQuery returns when it cannot find an element.
 //        override-values (optional, default is false):
 //          Controls whether elements already set (e.g. an input tag with a non-zero length value)
 //          will be touched by the unserializer. Does not apply to radio fields or checkboxes.
@@ -109,8 +112,8 @@
   				methods._unserializeFormSetValue(el, _value, _override_values);
   			} else {
   				// Callback specified - don't assume DOM elements already exist
-  				var result = _callback.call(this, unescape(key), _value);
-				
+  				var result = _callback.call(this, unescape(key), _value, el);
+          
   				// If they return true, it means they handled it. If not, we will handle it.
   				// Returning false then allows for DOM building without setting values.
   				if(result == false) {
@@ -143,4 +146,6 @@
 //                                    * Changed second parameter to an options array to account for new option
 //                                    * Added new option 'override-values', default to true, to control whether fields
 //                                      with content should be touched by the unserializer
-// 2012-02-08: Corrected documentation error. Thanks Scott Kirkland.
+// 2012-02-08: Version 1.0.6 release:
+//                                    * Corrected documentation error. Thanks Scott Kirkland
+//                                    * Added queried element (if found) as an optional third parameter for callbacks

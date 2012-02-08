@@ -1,6 +1,6 @@
 jQuery Unserialize (to) Form
 ----------------------------
-Version 1.0.5
+Version 1.0.6
 
 Simple jQuery plugin to unserialize data back into forms.
 
@@ -15,7 +15,7 @@ implement the same cookie string lengths, so sessionStorage or a SQL db is recom
 
 Alternate Usage:
 
-  var cb = function(element, value) { return true; // or false }
+  var cb = function(key, value, [element]) { return true; // or false }
 
   var s = $("form").serialize();
   $("form").unserializeForm(s, {
@@ -28,6 +28,9 @@ Alternate Usage:
     dynamic forms via callback. If you return false, unserializeForm will
     try to find and set the DOM element, otherwise, (on true) it assumes you've
     handled that attribute and moves onto the next.
+    The callback will be passed the key and value and, if found, the DOM object it
+    will use should you return false. If the DOM object is not found, the third parameter
+    will be the empty array jQuery returns when it cannot find an element.
   override-values (optional, default is false):
     Controls whether elements already set (e.g. an input tag with a non-zero length value)
     will be touched by the unserializer. Does not apply to radio fields or checkboxes.
@@ -47,3 +50,4 @@ Special thanks / Contributors:
   genellern
   Edward Anderson
   hoka
+  Scott Kirkland
