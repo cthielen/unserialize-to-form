@@ -10,9 +10,9 @@
     body {
       font-family: sans-serif;
     }
-  
+    
     label {
-      width: 8em;
+      width: 12em;
       float: left;
       text-align: right;
       margin-right: 0.5em;
@@ -20,7 +20,12 @@
     }
 
     .button input {
-      margin-left: 8.5em;
+      margin-left: 12.5em;
+    }
+    
+    select {
+      width: 14em;
+      height: 14em;
     }
   </style>
 
@@ -61,6 +66,21 @@
       <input type="radio" name="relationship" value="Single" /> Single
       <input type="radio" name="relationship" value="Engaged" /> Engaged
       <input type="radio" name="relationship" value="Married" /> Married
+    </p>
+    <p>
+      <label for="foods">Favorite Foods</label>
+      <select name="foods" multiple="multiple">
+        <optgroup label="Fruit">
+          <option value="apple">Apple</option>
+          <option value="orange">Orange</option>
+          <option value="banana">Banana</option>
+        </optgroup>
+        <optgroup label="Vegetables">
+          <option value="tomato">Tomato</option>
+          <option value="broccoli">Broccoli</option>
+          <option value="carrots">Carrots</option>
+        </optgroup>
+      </select>
     </p>
 
     <p>

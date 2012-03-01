@@ -1,6 +1,6 @@
 jQuery Unserialize (to) Form
 ----------------------------
-Version 1.0.6
+Version 1.0.7
 
 Simple jQuery plugin to unserialize data back into forms.
 
@@ -51,3 +51,4 @@ Special thanks / Contributors:
   Edward Anderson
   hoka
   Scott Kirkland
+  Joshua Weinstein

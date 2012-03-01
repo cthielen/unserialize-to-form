@@ -1,5 +1,5 @@
 // Unserialize (to) form plugin
-// Version 1.0.6
+// Version 1.0.7
 // Copyright (C) 2010-2012 Christopher Thielen, others (see ChangeLog below)
 // Dual-licensed under GPLv2 and the MIT open source licenses
 
@@ -65,6 +65,15 @@
      		  }
      		}
      	}
+    },
+    
+    _pushValue : function( obj, key, val ) {
+      if (null == obj[key])
+        obj[key] = val;
+      else if (obj[key].push)
+        obj[key].push(val);
+      else
+        obj[key] = [obj[key], val];
     }
   };
   
@@ -92,21 +101,32 @@
   			var properties = this.split("=");
 			
   			if((typeof properties[0] != 'undefined') && (typeof properties[1] != 'undefined')) {
-  				serialized_values[properties[0].replace(/\+/g, " ")] = decodeURI(properties[1].replace(/\+/g, " "));
+          methods._pushValue(serialized_values, properties[0].replace(/\+/g, " "), decodeURI(properties[1].replace(/\+/g, " ")));
   			}
   		});
 		
   		// _values is now a proper array with values[hash_index] = associated_value
   		_values = serialized_values;
-		
+      
   		// Start with all checkboxes and radios unchecked, since an unchecked box will not show up in the serialized form
   		$(this).find(":checked").attr("checked", false);
 		
   		// Iterate through each saved element and set the corresponding element
   		for(var key in _values) {
   			var el = $(this).add("input,select,textarea").find("[name=\"" + unescape(key) + "\"]");
-  			var _value = unescape(_values[key]);
-			
+        
+        if(typeof(_values[key]) != "string") {
+          // select tags using 'multiple' will be arrays here (reports "object")
+          // We cannot do the simple unescape() because it will flatten the array.
+          // Instead, unescape each item individually
+          var _value = new Array();
+          $.each(_values[key], function(i, v) {
+            _value.push(unescape(v));
+          })
+        } else {
+  			  var _value = unescape(_values[key]);
+        }
+			  
   			if(_callback == undefined) {
   				// No callback specified - assume DOM elements exist
   				methods._unserializeFormSetValue(el, _value, _override_values);
@@ -149,3 +169,5 @@
 // 2012-02-08: Version 1.0.6 release:
 //                                    * Corrected documentation error. Thanks Scott Kirkland
 //                                    * Added queried element (if found) as an optional third parameter for callbacks
+// 2012-02-29: Version 1.0.7 release:
+//                                    * Added support for <select multiple>. Thanks Joshua Weinstein
