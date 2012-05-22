@@ -1,0 +1,31 @@
+{
+    "name" : "jQuery.unserializeForm",
+    "title" : "Unserialize To Form",
+    "description" : "Simple jQuery plugin to unserialize data back into forms.",
+    "version" : "1.0.7",
+    "files" : "jQuery.unserializeForm.js",
+    "author" : {
+        "name" : "Christopher Thielen",
+        "email" : "",
+        "url" : "http://chris.luethy.net/"
+    },
+    "licenses" : [
+        {
+            "type" : "GPLv2",
+            "url" : "http://www.gnu.org/licenses/gpl-2.0.html"
+        },
+        {
+            "type" : "MIT",
+            "url" : "http://www.opensource.org/licenses/MIT"
+        }
+    ],
+    "dependencies" : {
+        "jquery" : ">=1.6.x"
+    },
+    "keywords" : ["serialize", "unserialize", "request", "URI", "URL", "form",
+        "input", "textarea", "select"]
+    "docs" : "https://github.com/cthielen/unserialize-to-form/blob/master/README"
+    "homepage" : "https://github.com/cthielen/unserialize-to-form",
+    "demo" : "https://github.com/cthielen/unserialize-to-form/blob/master/test.html"
+}
+
