@@ -94,10 +94,10 @@
       localStorage.setItem('the_form', s); // save in HTML5 session storage
     }
     
-    function test_clear() {
-      $('form :input[type!=radio]').val("");
-      $('form :input').attr("checked", false);
-      
+	function test_clear() {
+      $('input,textarea,select').not('[type=radio],[type=checkbox]').val("");
+      $('input:checked').attr("checked", false);
+
       // The above one-liner clears the text from our buttons ...
       $("input#save").val("Save");
       $("input#clear").val("Clear");
