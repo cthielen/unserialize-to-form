@@ -40,16 +40,17 @@
 (function($) {
   var methods = {
     _unserializeFormSetValue : function( el, _value, override ) {
+
        if($(el).length > 1) {
      		// Assume multiple elements of the same name are radio buttons
      		$.each(el, function(i) {
-     			if($(this).attr("value") == _value) {
-     				// Check it
-     				$(this).attr("checked", true);
-     			} else {
-     				// Uncheck it
-     				$(this).attr("checked", false);
-     			}
+
+				var match = ($.isArray(_value)
+							 ? ($.inArray(this.value, _value) != -1)
+							 : (this.value == _value)
+							);
+
+				this.checked = match;
      		});
      	} else {
      		// Assume, if only a single element, it is not a radio button
