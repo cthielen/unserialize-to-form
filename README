@@ -1,6 +1,6 @@
 jQuery Unserialize (to) Form
 ----------------------------
-Version 1.0.7
+Version 1.0.8
 
 Simple jQuery plugin to unserialize data back into forms.
 
@@ -22,7 +22,7 @@ Alternate Usage:
     'callback'        : cb,
     'override-values' : false
   });
-  
+
   callback (optional):
     The above callback is given the element name and value, allowing you to build
     dynamic forms via callback. If you return false, unserializeForm will
@@ -42,7 +42,8 @@ Alternate Usage:
 
 Known issues:
 
-  * None.
+  * Input element arrays are not cleared before being unserialized, resulting in
+    the unserialized values _and_ whatever was already set to be set.
 
 Special thanks / Contributors:
   Anton
@@ -52,3 +53,4 @@ Special thanks / Contributors:
   hoka
   Scott Kirkland
   Joshua Weinstein
+  Gary Green
