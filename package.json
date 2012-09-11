@@ -2,12 +2,12 @@
     "name" : "jQuery.unserializeForm",
     "title" : "Unserialize To Form",
     "description" : "Simple jQuery plugin to unserialize data back into forms.",
-    "version" : "1.0.7",
+    "version" : "1.0.8",
     "files" : "jQuery.unserializeForm.js",
     "author" : {
         "name" : "Christopher Thielen",
         "email" : "",
-        "url" : "http://chris.luethy.net/"
+        "url" : "http://christopherthielen.com/"
     },
     "licenses" : [
         {
