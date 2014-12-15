@@ -55,7 +55,7 @@
      	} else {
      		// Assume, if only a single element, it is not a radio button
      		if($(el).attr("type") == "checkbox") {
-     			$(el).attr("checked", true);
+     			$(el).prop("checked", true);
      		} else {
      		  if(override) {
      		    $(el).val(_value);
