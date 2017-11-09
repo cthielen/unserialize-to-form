@@ -1,6 +1,6 @@
 // Unserialize (to) form plugin
-// Version 1.0.8
-// Copyright (C) 2010-2012 Christopher Thielen, others (see ChangeLog below)
+// Version 1.0.10
+// Copyright (C) 2010-2017 Christopher Thielen, others (see ChangeLog below)
 // Dual-licensed under GPLv2 and the MIT open source licenses
 
 // Usage:
@@ -174,3 +174,5 @@
 // 2012-09-11: Version 1.0.8 release:
 //                                    * Added support for input element arrays. Thanks Gary Green.
 //                                      Note input element arrays should first be cleared.
+// 2017-11-09: Version 1.0.10 release:
+//                                    * Added support for multiple inputs with the same name. Thanks Joel Nothman
