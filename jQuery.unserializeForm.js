@@ -39,33 +39,32 @@
 
 (function($) {
   var methods = {
-    _unserializeFormSetValue : function( el, _value, override ) {
-
-       if($(el).length > 1) {
-     		// Assume multiple elements of the same name are radio buttons
-     		$.each(el, function(i) {
-
-				var match = ($.isArray(_value)
-							 ? ($.inArray(this.value, _value) != -1)
-							 : (this.value == _value)
-							);
-
-				this.checked = match;
-     		});
-     	} else {
-     		// Assume, if only a single element, it is not a radio button
-     		if($(el).attr("type") == "checkbox") {
-     			$(el).prop("checked", true);
-     		} else {
-     		  if(override) {
-     		    $(el).val(_value);
-     		  } else {
-     		    if (!$(el).val()) {
-              $(el).val(_value);
+    _unserializeFormSetValue : function( els, _values, override ) {
+      if (els.filter('select[multiple]').val(_values).length)
+        return;
+      $.each(($.isArray(_values) ? _values : [_values]), function(i, value) {
+        // assign each value in turn to the first matching element
+        for(var j = 0; j < els.length; j++) {
+          var el = $(els[j]);
+          if(el.attr('type') && el.attr('type').match(/^radio$|^checkbox$/)) {
+            if(el.attr('value') == value ||
+                ((value == 'on') && !el.attr('value'))) {
+              el.prop('checked', true);
+              break;
             }
-     		  }
-     		}
-     	}
+          } else {
+            if(override || !el.val()) {
+              el.val(value);
+            }
+            break;
+          }
+        }
+        if(j >= els.length) {
+          console.warn('Could not set ' + els.attr('name') + ' to ' + value);
+        } else {
+          els.splice(j, 1);  // cannot assign to this element again
+        }
+      });
     },
 
     _pushValue : function( obj, key, val ) {
