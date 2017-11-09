@@ -102,7 +102,7 @@
   <script type="text/javascript">
     function test_save() {
       var s = $("form#test").serialize(); // save form settings.
-      localStorage.setItem('the_form', s); // save in HTML5 session storage
+      the_form = s;
     }
     
 	function test_clear() {
@@ -117,7 +117,7 @@
 
     // The actual jQuery.unserializeForm test
     function test_load() {
-      var s = localStorage.getItem('the_form');
+      var s = the_form;
       $("form#test").unserializeForm(s);
     }
   </script>
